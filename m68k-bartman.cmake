@@ -13,6 +13,7 @@ set(CMAKE_SYSTEM_PROCESSOR m68k)
 
 string(TOLOWER ${CMAKE_SYSTEM_NAME} SYS_NAME)
 string(TOLOWER ${CMAKE_SYSTEM_PROCESSOR} SYS_CPU)
+
 set(TOOLCHAIN_PREFIX_DEFAULT "${SYS_CPU}-${SYS_NAME}")
 set(TOOLCHAIN_PREFIX ${TOOLCHAIN_PREFIX_DEFAULT} CACHE STRING "Compiler prefix, default: ${TOOLCHAIN_PREFIX_DEFAULT}")
 set(TOOLCHAIN_PREFIX_DASHED "${TOOLCHAIN_PREFIX}-")
@@ -32,8 +33,14 @@ set(TOOLCHAIN_CFLAGS "${M68K_CFLAGS}" CACHE STRING "CFLAGS")
 set(TOOLCHAIN_CXXFLAGS "${M68K_CXXFLAGS}" CACHE STRING "CXXFLAGS")
 set(TOOLCHAIN_LDFLAGS "${M68K_LDFLAGS}" CACHE STRING "LDFLAGS")
 set(TOOLCHAIN_COMMON "${M68K_COMMON}" CACHE STRING "Common FLAGS")
+if(WIN32)
+    set(TOOLCHAIN_PATH_DEFAULT /opt/${TOOLCHAIN_PREFIX})
+else()
+    set(TOOLCHAIN_PATH_DEFAULT /home/mirek/.vscode/extensions/bartmanabyss.amiga-debug-1.7.9/bin/linux/opt)
+endif()
 
-set(TOOLCHAIN_PATH_DEFAULT /opt/${TOOLCHAIN_PREFIX})
+
+
 set(TOOLCHAIN_PATH ${TOOLCHAIN_PATH_DEFAULT} CACHE PATH "Path to compiler, default: ${TOOLCHAIN_PATH_DEFAULT}")
 # Make sure the toolchain path uses forward slashes, even on Windows, otherwise subcommands may not work correctly if they don't escape the backslashes
 file(TO_CMAKE_PATH "${TOOLCHAIN_PATH}" TOOLCHAIN_PATH)
