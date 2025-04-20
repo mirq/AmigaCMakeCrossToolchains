@@ -17,6 +17,6 @@ In order to use the m68k-amigaos.cmake toolchain file, you need to do a tiny cha
 - enter the directory where the CMake platform configuration files are stored - specifically the Generic.cmake file.
   - On GNU/Linux systems, this is usually stored in `/usr/share/cmake-<VERSION>/Modules/Platforms/Generic.cmake`
   - On Windows systems, this is usually stored in  `C:\Program Files\CMake\share\cmake-<VERSION>\Modules\Platform\Generic.cmake`
-- copy `Generic.cmake` to `AmigaOS.cmake`
+- copy `Generic.cmake` to `amiga-elf.cmake`
 
 this is due to toolchain file changing `CMAKE_SYSTEM_NAME` to `AmigaOS`. On unchanged installations, this could throw an error because there's no platform file.
