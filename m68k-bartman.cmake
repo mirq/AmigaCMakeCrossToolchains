@@ -36,7 +36,11 @@ set(TOOLCHAIN_COMMON "${M68K_COMMON}" CACHE STRING "Common FLAGS")
 if(WIN32)
     set(TOOLCHAIN_PATH_DEFAULT /opt/${TOOLCHAIN_PREFIX})
 else()
-    set(TOOLCHAIN_PATH_DEFAULT ~/.vscode/extensions/bartmanabyss.amiga-debug-1.7.9/bin/linux/opt)
+    if(DEFINED VSCODE_AMIGA_EXTENSION_PATH)
+        set(TOOLCHAIN_PATH_DEFAULT ${VSCODE_AMIGA_EXTENSION_PATH}/bin/linux/opt)
+    else()
+        set(TOOLCHAIN_PATH_DEFAULT ~/.vscode/extensions/bartmanabyss.amiga-debug-1.7.9/bin/linux/opt)
+    endif()
 endif()
 
 
