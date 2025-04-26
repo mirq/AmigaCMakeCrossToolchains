@@ -28,12 +28,12 @@ for /f "tokens=1,2 delims=." %%a in ("!CMAKE_FULL_VERSION!") do (
 echo Detected CMake version: !CMAKE_VERSION!
 
 :: Determine CMake platform directory
-set "CMAKE_PLATFORM_DIR=C:\Program Files\CMake\share\cmake-!CMAKE_VERSION!\Modules\Platform"
+set "CMAKE_PLATFORM_DIR=C:\mingw64\share\cmake-!CMAKE_VERSION!\Modules\Platform"
 
 :: Check if the directory exists
 if not exist "!CMAKE_PLATFORM_DIR!" (
     :: Try alternate location - CMake might be installed in Program Files (x86)
-    set "CMAKE_PLATFORM_DIR=C:\Program Files (x86)\CMake\share\cmake-!CMAKE_VERSION!\Modules\Platform"
+    set "CMAKE_PLATFORM_DIR=C:\Program Files\CMake\share\cmake-!CMAKE_VERSION!\Modules\Platform"
     
     if not exist "!CMAKE_PLATFORM_DIR!" (
         echo Error: Could not find CMake platform directory.
